@@ -30,6 +30,6 @@ def parse(filename):
             branches.append((node1, node2))
 
     return {
-        'nodes': found_nodes,
+        'nodes': list(found_nodes),
         'branches': branches
     }
