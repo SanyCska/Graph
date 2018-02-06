@@ -1,6 +1,8 @@
 from flask import Flask, render_template
-from output import take_data
+
+PORT = 2016
 app = Flask(__name__)
+
 
 @app.route('/')
 def hello_world():
@@ -8,5 +10,4 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    print(take_data())
-    app.run(port=2016)
+    app.run(port=PORT)
