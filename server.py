@@ -1,9 +1,6 @@
-from datetime import datetime
-from io import BytesIO
 
 from flask import Flask, render_template, request, jsonify
-
-from excel_parser import parse
+from handlers.upload import process_file
 
 PORT = 2016
 app = Flask(__name__)
@@ -17,10 +14,7 @@ def index_page():
 @app.route('/upload/', methods=['POST'])
 def upload_resource():
     if request.method == 'POST':
-        result = parse(BytesIO(request.data))
-        # TODO: Получение имени загружаемого файла
-        result['name'] = ''
-        result['timestamp'] = datetime.now().strftime('%Y-%m-%d-%H.%M.%S')
+        result = process_file(request.data)
         return jsonify(result)
 
 
