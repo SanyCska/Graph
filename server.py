@@ -1,6 +1,8 @@
 from tinydb import TinyDB
 from flask import Flask, render_template, request, jsonify
+
 from handlers.upload import process_file
+import db
 
 PORT = 2016
 app = Flask(__name__)
@@ -18,5 +20,15 @@ def upload_resource():
         return jsonify(result)
 
 
+@app.route('/graphs/')
+def graphs():
+    return jsonify({
+        'graphs': db.graphs()
+    })
+
+@app.route('/graphs/<graph_uid>/')
+def graph(graph_uid):
+    return jsonify(db.read(graph_uid))
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=PORT)
+    app.run(debug=True, port=PORT)

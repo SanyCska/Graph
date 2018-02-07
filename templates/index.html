@@ -5,6 +5,16 @@
     <title>Test task</title>
 </head>
 <body>
-    <h1>The graph will be here. I hope...</h1>
+    <h1>List of graphs</h1>
+    <form action="http://127.0.0.1:2016/graph_drawing/" method="get">
+        <select id = graph_select>
+            {% for graph in graphs %}
+            <option value = graph.uuid>{{graph.name, graph.timestamp}}
+            </option>
+            {% endfor %}
+        </select>
+        <p><input type="submit" value=$( "#graph_select" ).val() ></p>
+    </form>
+
 </body>
 </html>
