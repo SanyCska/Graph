@@ -9,6 +9,8 @@ class TestLoader(unittest.TestCase):
         with open('../upload/test1.xlsx', 'rb') as f:
             result = process_file(f.read())
         del result['timestamp']
+        del result['uuid']
+
 
         expected = {
             'name': '',
