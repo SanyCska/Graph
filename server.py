@@ -1,12 +1,12 @@
 from tinydb import TinyDB
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
+import json
 
 from handlers.upload import process_file
 import db
 
 PORT = 2016
-app = Flask(__name__)
-
+app = Flask(__name__, static_url_path='', static_folder = "static")
 
 @app.route('/')
 def index_page():
@@ -26,9 +26,18 @@ def graphs():
         'graphs': db.graphs()
     })
 
+
 @app.route('/graphs/<graph_uid>/')
 def graph(graph_uid):
     return jsonify(db.read(graph_uid))
 
+
+@app.route('/selected_graph/', methods=['POST'])
+def selected_graph():
+    graph_uuid = request.form.to_dict()
+    return(graph_uuid)
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=PORT)
+
