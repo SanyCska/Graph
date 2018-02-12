@@ -14,4 +14,3 @@ def process_file(data):
     result['uuid'] = uuid.uuid4().hex
     db.insert(result)
     return result
-

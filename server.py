@@ -34,7 +34,7 @@ def graph(graph_uid):
 
 @app.route('/selected_graph/', methods=['POST'])
 def selected_graph():
-    graph_uuid = request.form.to_dict()
+    graph_uuid = request.form.to_dict().get('data', '')
     return(graph_uuid)
 
 
