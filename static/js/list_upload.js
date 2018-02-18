@@ -10,7 +10,7 @@ window.onload = function(){
             arr.forEach(function(item, i, arr){
                     function send_graph(uuid){
                     }
-                    items.push('<option value="' + item.uuid + '">' +  + item.name + '  ' + item.timestamp + '</option>');
+                    items.push('<option value="' + item.uuid + '">' + item.name + '  ' + item.timestamp + '</option>');
             });
             $('<select/>', {
                 name: 'graphs',
@@ -19,13 +19,6 @@ window.onload = function(){
             var button = $('<input type="submit" name="submit"/>');
             button.click(function(){
                 draw_graph($('select').val());
-                // $.ajax({
-                //     type: "POST",
-                //     url: 'http://127.0.0.1:2016/selected_graph/',
-                //     dataType: 'json',
-                //     data:{"data": $('select').val()}
-                // })
-
             });
             button.appendTo('#graphs_list');
         }

@@ -15,6 +15,8 @@ function draw_graph(uuid) {
     d3.json(graph_url, function (error, graph) {
         if (error) throw error;
 
+        print(graph[0])
+
         simulation
             .nodes(graph[0].nodes)
             .on("tick", ticked);

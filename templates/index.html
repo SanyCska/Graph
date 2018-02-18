@@ -6,11 +6,27 @@
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/list_upload.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+      .droparea {
+          width: 200px;
+          height: 200px;
+          border-style: solid;
+          border-width: 3px;
+          border-color: red;
+          float: left;
+          line-height: 200px;
+          text-align: center;
+      }
+    </style>
 </head>
 <body>
     <h1>List of graphs</h1>
+    <div class="droparea" id="drop_zone">Drop files here
+        <script src="/js/drag&drop.js"></script>
+    </div>
     <div id = graphs_list></div>
-        <canvas width="960" height="600"></canvas>
+    <canvas width="960" height="600">
         <script src="/js/graph_draw.js"></script>
+    </canvas>
 </body>
 </html>

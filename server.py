@@ -1,6 +1,7 @@
 from tinydb import TinyDB
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import json
+from werkzeug.utils import secure_filename
 
 from handlers.upload import process_file
 import db
@@ -12,12 +13,17 @@ app = Flask(__name__, static_url_path='', static_folder = "static")
 def index_page():
     return render_template('index.html')
 
+app.config["UPLOAD_FOLDER"] = "uploads"
+
 
 @app.route('/upload/', methods=['POST'])
 def upload_resource():
     if request.method == 'POST':
-        result = process_file(request.data)
-        return jsonify(result)
+        print('zbc')
+        file = request.files.to_dict().get('file')
+        print(file.filename)
+        process_file(file.read(), file.filename)
+        return 'success'
 
 
 @app.route('/graphs/')

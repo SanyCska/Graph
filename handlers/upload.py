@@ -6,10 +6,9 @@ import db
 from excel_parser import parse
 
 
-def process_file(data):
+def process_file(data, name):
     result = parse(BytesIO(data))
-    # TODO: Получение имени загружаемого файла
-    result['name'] = ''
+    result['name'] = name
     result['timestamp'] = datetime.now().strftime('%Y-%m-%d-%H.%M.%S')
     result['uuid'] = uuid.uuid4().hex
     db.insert(result)
